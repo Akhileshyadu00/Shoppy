@@ -10,7 +10,7 @@ function App() {
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition(pos => {
       const { latitude, longitude} = pos.coords
-      console.log(latitude, longitude);
+     // console.log(latitude, longitude);
       
     })
   }
