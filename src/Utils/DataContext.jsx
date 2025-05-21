@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios"
+//import { DataContext} from "../Utils/DataContext"
 
 export const DataContext = createContext(null)
 
@@ -26,3 +27,8 @@ export const DataProvider = ({children}) => {
         {children}
     </DataContext.Provider>
 }
+
+//Custom Hooks
+
+export const useData = () => useContext(DataContext);
+
