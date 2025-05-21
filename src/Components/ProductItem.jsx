@@ -6,7 +6,7 @@ function ProductItem({ product }) {
     <div className="flex flex-col sm:flex-row gap-4 border border-gray-300 rounded-2xl overflow-hidden shadow hover:shadow-2xl transition duration-300 cursor-pointer p-4 bg-white">
       
       {/* Image Section */}
-      <div className="flex items-center justify-center bg-gray-100 rounded-lg p-4 w-full sm:w-1/3">
+      <div className="flex items-center justify-center bg-gray-100 rounded-lg p-4 w-full sm:w-2/3">
         <img
           src={product.image}
           alt={product.title}

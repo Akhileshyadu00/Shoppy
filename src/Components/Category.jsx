@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useData } from '../Utils/DataContext';
 
 function Category() {
-  const { data, fetchProduct } = useData();
+  const { categoryOnlyData } = useData();
 
-  const getUniqueCategory = (data, property) => {
-    const newVal = data?.map((curElem) => curElem[property]);
-    const uniqueValues = [...new Set(newVal)];
-    return uniqueValues;
-  };
+  // const getUniqueCategory = (data, property) => {
+  //   const newVal = data?.map((curElem) => curElem[property]);
+  //   const uniqueValues = [...new Set(newVal)];
+  //   return uniqueValues;
+  // };
 
-  const categoryOnlyData = getUniqueCategory(data, 'category');
+  // const categoryOnlyData = getUniqueCategory(data, 'category');
 
-  useEffect(() => {
-    fetchProduct();
-  }, []);
+  // useEffect(() => {
+  //   fetchProduct();
+  // }, []);
 
   return (
     <div className="bg-[#101829] py-8 px-4">
