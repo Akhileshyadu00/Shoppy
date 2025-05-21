@@ -19,7 +19,7 @@ function ProductList() {
   const totalPages = Math.ceil(data?.length / itemsPerPage) || 1;
 
   const startIndex = (page - 1) * itemsPerPage;
-  const paginatedProducts = data.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedProducts = data?.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -42,7 +42,7 @@ function ProductList() {
         </>
       ) : (
         <div className="flex items-center justify-center h-60 text-lg font-semibold text-gray-600">
-          No items found
+          Loading......
         </div>
       )}
     </div>
