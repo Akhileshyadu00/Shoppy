@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { IoCartOutline } from "react-icons/io5";
 
 function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   const { id } = useParams(); //
 
@@ -28,7 +30,11 @@ function ProductDetails() {
   }
 
   if (!product) {
-    return <div className="text-center py-10 text-red-500 text-xl">Product not found</div>;
+    return (
+      <div className="text-center py-10 text-red-500 text-xl">
+        Product not found
+      </div>
+    );
   }
 
   return (
@@ -45,12 +51,33 @@ function ProductDetails() {
 
       {/* Details */}
       <div className="w-full md:w-1/2">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">{product.title}</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          {product.title}
+        </h1>
         <p className="text-gray-600 mb-4">{product.description}</p>
-        <p className="text-xl font-semibold text-gray-600 mb-6">Rs. {product.price}</p>
-        <button className="bg-red-300 hover:bg-red-600 text-white px-6 py-2 rounded shadow transition">
-          Add to Cart
+        <p className="text-xl font-semibold text-gray-600 mb-6">
+          Rs. {product.price}
+        </p>
+
+        <div className="flex items-center gap-4">
+          <div>
+            <label htmlFor="" className="text-sm font-medium text-gray-700">
+              Quantity: 
+            </label>
+            <input
+              type="number"
+              min={1}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="border border-gray-300 rounded-2xl px-4 py-1 w-20 focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+          </div>
+        </div>
+        <div>
+        <button className="bg-red-500 hover:bg-red-800 text-white mt-4 px-6 py-2 rounded shadow transition">
+          <IoCartOutline />
         </button>
+        </div>
       </div>
     </div>
   );

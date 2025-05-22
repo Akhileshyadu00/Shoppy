@@ -2,10 +2,12 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaMapPin, FaCaretDown } from 'react-icons/fa';
 import { IoCartOutline } from 'react-icons/io5';
+import { useCart } from '../Utils/CartContext';
 
 function Navbar() {
   const location = ''; // Replace with actual location string or leave blank
   const cartCount = 0; // Replace with actual cart count
+  const {cartItem } = useCart()
 
   return (
     <nav className="bg-white shadow-md py-4 px-6">
@@ -73,11 +75,11 @@ function Navbar() {
             <Link to="/cart" className="text-2xl hover:text-red-500 transition">
               <IoCartOutline />
             </Link>
-            {cartCount > 0 && (
+         
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
-                {cartCount}
+                {cartItem.length}
               </span>
-            )}
+            
           </li>
         </ul>
 

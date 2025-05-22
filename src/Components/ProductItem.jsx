@@ -1,9 +1,15 @@
 import React from 'react';
 import { IoCartOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../Utils/CartContext';
 
 function ProductItem({ product }) {
   const navigate = useNavigate();
+  const {addToCart,cartItem} = useCart()
+
+
+  console.log(cartItem);
+  
 
   return (
     <div className="flex flex-col border border-gray-300 rounded-2xl overflow-hidden shadow hover:shadow-2xl transition duration-300 cursor-pointer p-4 bg-white h-full">
@@ -31,10 +37,14 @@ function ProductItem({ product }) {
         </div>
 
         {/* Add to Cart Button */}
-        <button className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition mt-auto">
-          <IoCartOutline className="text-xl" />
-          Add to Cart
-        </button>
+        <button
+  onClick={() => addToCart(product)}
+  className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition mt-auto"
+>
+  <IoCartOutline className="text-xl" />
+  Add to Cart
+</button>
+
       </div>
     </div>
   );
