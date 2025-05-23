@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { IoCartOutline } from "react-icons/io5";
+import { useCart } from '../Utils/CartContext';
 
 function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+
+  const { addToCart } = useCart();
 
   const { id } = useParams(); //
 
@@ -74,7 +77,9 @@ function ProductDetails() {
           </div>
         </div>
         <div>
-        <button className="bg-red-500 hover:bg-red-800 text-white mt-4 px-6 py-2 rounded shadow transition">
+        <button 
+         onClick={() => addToCart(product)}
+        className="bg-red-500 hover:bg-red-800 text-white mt-4 px-6 py-2 rounded shadow transition">
           <IoCartOutline />
         </button>
         </div>

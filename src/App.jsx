@@ -8,6 +8,7 @@ import Footer from "./Components/Footer"
 import About from "./Components/About"
 import Contact from "./Components/Contact"
 import ProductDetails from "./Components/ProductDetails"
+import Error from "./Components/Error"
 
 
  function App() {
@@ -33,6 +34,7 @@ import ProductDetails from "./Components/ProductDetails"
         <Route path="/about" element={ <About/>}></Route>
         <Route path="/contact" element={ <Contact/>}></Route>
         <Route path="/cart" element={ <Cart/>}></Route>
+        <Route path="*" element={<Error />} ></Route>
       </Routes>
       <Footer />
     </Router>

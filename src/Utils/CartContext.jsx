@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 export const CartContext = createContext(null);
 
@@ -10,12 +11,14 @@ export const CartProvider = ({ children }) => {
     setCartItem((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
+        toast.info("Increased product quantity");
         return prevItems.map((item) =>
           item.id === product.id
             ? { ...item, quantity: (item.quantity || 1) + 1 }
             : item
         );
       } else {
+        toast.success("Product added to cart");
         return [...prevItems, { ...product, quantity: 1 }];
       }
     });
@@ -30,6 +33,7 @@ export const CartProvider = ({ children }) => {
           : item
       )
     );
+    toast.info("Increased product quantity");
   };
 
   // ✅ Decrement quantity (remove if quantity is 1)
@@ -43,6 +47,7 @@ export const CartProvider = ({ children }) => {
         )
         .filter((item) => item.quantity > 0)
     );
+    toast.warn("Decreased product quantity");
   };
 
   // ✅ Remove item entirely
@@ -50,11 +55,20 @@ export const CartProvider = ({ children }) => {
     setCartItem((prevItems) =>
       prevItems.filter((item) => item.id !== itemId)
     );
+    toast.error("Product removed from cart");
   };
 
   return (
-    <CartContext.Provider 
-    value={{ cartItem,setCartItem,addToCart,incrementQuantity,decrementQuantity,removeFromCart}}>
+    <CartContext.Provider
+      value={{
+        cartItem,
+        setCartItem,
+        addToCart,
+        incrementQuantity,
+        decrementQuantity,
+        removeFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
